@@ -6,10 +6,10 @@ import numpy as np
 np.set_printoptions(suppress=True)
 
 # Load the model
-model = load_model("keras_model.h5", compile=False)
+model = load_model("models/keras_model.h5", compile=False)
 
 # Load the labels
-class_names = open("labels.txt", "r").readlines()
+class_names = open("models/labels.txt", "r").readlines()
 
 # CAMERA can be 0 or 1 based on default camera of your computer
 camera = cv2.VideoCapture(0)
@@ -23,6 +23,9 @@ while True:
 
     # Make a copy of the image to display text
     display_image = image.copy()
+
+    # Double the size of the display image (adjust dimensions as needed)
+    display_image = cv2.resize(display_image, (700, 700), interpolation=cv2.INTER_LINEAR)
 
     # Make the image a numpy array and reshape it to the models input shape.
     image = np.asarray(image, dtype=np.float32).reshape(1, 224, 224, 3)
@@ -40,7 +43,7 @@ while True:
     text = f"Class: {class_name[2:].strip()} | Confidence: {np.round(confidence_score * 100):.0f}%"
 
     # Overlay the text on the image
-    cv2.putText(display_image, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
+    cv2.putText(display_image, text, (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 1.4, (0, 255, 0), 3)
 
     # Show the image in a window
     cv2.imshow("Webcam Image", display_image)
