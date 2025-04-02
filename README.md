@@ -26,6 +26,9 @@ pip install -r requirements.txt
 python appTM.py
 ```
 
+### 4. 실행 화면
+![image](https://github.com/user-attachments/assets/2e49687b-0afc-47d6-8afd-6eb8e63e22d8)
+
 ---
 
 tip : md 파일 작성할 때 코드 블록은 ```로 감싸면 복붙하기 편리하며, 가독성도 좋습니다.
